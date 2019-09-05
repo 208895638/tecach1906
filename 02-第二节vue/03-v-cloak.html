@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 一个标签里面的某个属性对应的样式 */
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 用于解决页面闪烁问题  页面刷新出现双大括号{{}} -->
+    <div id="app" v-cloak>
+        <!-- 渲染数据到页面里面 有三种方式 -->
+        <!-- 1 .双大括号插值法 {{}} 可以渲染多个属性 缺点  双大括号 在页面渲染的时候 首先默认展示的是没有解析过的{{}} 对用户体验不好 -->
+        <!-- 2. v-text 渲染文本 在一个标签里面只能有一个v-text 如果写多个v-text 默认只能渲染第一个v-text-->
+        <!-- 3. v-html 既可以渲染文本 也可以渲染标签 -->
+        <div>
+            {{ name }}   {{ age }}
+        </div>
+        <p v-text="name">
+
+        </p>
+        <h2 v-html="names">
+
+        </h2>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app", //  el代表vue需要挂载到的元素
+            data () { // data叫做vue的数据仓库  页面所有的数据都存放在data里面
+                return {
+                    name:"张三",
+                    age:40,
+                    names:"<p>李四</p>"
+                }
+            }
+        });
+    </script>
+</body>
+</html>

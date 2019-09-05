@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   <style>
+       .red{
+           color: red;
+       }
+   </style>
+</head>
+<script src="./lib/vue.js"></script>
+<body>
+    <div id="app">
+        <!-- v-bind 动态绑定标签里面的属性 只要是标签里面的属性 都可以进行绑定 -->
+        <!-- v-bind绑定属性直接在标签里面直接绑定字符串的化需要在绑定的值加引号 -->
+        <!-- v-bind默认绑定的值是变量 如果想要直接绑定字符串 那么需要直接在这个字符串外面加引号-->
+        <!-- v-bind可以简写 : -->
+       <div v-bind:class="class1">
+            bufan
+       </div>
+       
+       <img v-bind:src="imgSrc" alt="">
+       <p v-bind:title="titles">
+            这是p标签
+       </p>
+
+       <!-- 报错 -->
+       <p v-bind:title="'不凡学院'">
+            这是p标签
+       </p>
+       <p :title="'不凡学院'">
+           不凡学院
+       </p>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",  //  el代表控制元素的区域   
+            data () {  // data 数据仓库  
+                return {
+                   class1:"red",
+                   imgSrc:"./logo.png",
+                   titles:"p标签1"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

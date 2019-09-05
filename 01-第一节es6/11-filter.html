@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [ 0 , 2 ,4,3, 5];
+        // 把数组中大于3的数据过滤出来 不会改变元数据 返回符合条件的数据
+        // var newAr = [] ;
+        // filter 过滤
+        // find filter find找到符合条件的元素就不会向下执行 返回的是符合条件的元素 filter 把符合条件的元素全部过滤出来 返回的数据结构是数组 不符合条件 返回的是空数组
+        var newArr = arr.filter(ele =>{ 
+            console.log(ele)
+           return  ele > 6
+        }) ;
+        console.log(newArr , arr)
+    </script>
+</body>
+</html>

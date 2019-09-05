@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .isSHow{
+            display: none;
+        }
+    </style>
+</head>
+<script src="./lib/vue.js"></script>
+<body>
+    <div id="app">
+       <!-- v-if用于控制元素的显示和隐藏 -->
+       <!-- v-if特点 当值为false的时候 vue会默认把v-if值对应的标签进行销毁 -->
+       <!-- 在vue中 不管v-if和v-show 只要为true 的情况 vue不会对标签对应的值进行处理 -->
+        <div class="isSHow" v-if="bol">
+            {{ name }}
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",  //  el代表控制元素的区域   
+            data () {  // data 数据仓库  
+                return {
+                    name : "张三",
+                    names:"<span>李四</span>",
+                    age:40,
+                    num1 : 1,
+                    num2 : 2,
+                    bol:true
+                }
+            }
+        })
+    </script>
+</body>
+</html>

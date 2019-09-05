@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. 剩余运算符
+        // var arr = [ 1 ,2 ,4 , [4 , 5]];
+        // console.log(...arr) // 1 , 2 , 4 , [4,5]
+        //2. 剩余运算符用处 用于生成新数组
+        // var arr = [ 0 , 1];
+        // var arrs = [ 2 , 3];
+
+        // // var arr1 = arr.concat(arrs);
+        // var arr2 = [...arr , ...arrs];
+        // console.log(arr2)
+        // find  findIndex  // find查找符合条件的元素  findIndex查找符合元素对应的下标
+        // var arr = [
+        //     {
+        //         age : 40
+        //     },
+        //     {
+        //         age : 50
+        //     },
+        //     {
+        //         age : 50
+        //     },
+        //     {
+        //         age : 60
+        //     },
+        // ];
+
+        // ///arr[1]
+        
+        // var obj = arr.find(function(ele){  // 第一次 { age : 40 },
+        //     //console.log(ele);
+        //     return ele.age == 50; // return  代表找到符合条件的元素 并把符合条件的元素返回出去 找到符合条件的元素之后直接结束 即使后面有符合条件的元素也不会执行
+        // });
+        // console.log(obj)  // 数组  对象
+          var arr = [
+            {
+                age : 40
+            },
+            {
+                age : 50
+            },
+            {
+                age : 50
+            },
+            {
+                age : 60
+            },
+        ];
+
+        ///arr[1]
+        var obj = arr.findIndex(function(ele){  // findIndex 返回的结果是下标而不是符合条件的元素 找到符合条件的元素之后直接结束 即使后面有符合条件的元素也不会执行
+            //console.log(ele);
+            return ele.age == 50; 
+        });
+        console.log(obj) // 1
+    </script>
+</body>
+</html>

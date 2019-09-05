@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<script src="./lib/vue.js"></script>
+<body>
+    <div id="app">
+      <!-- v-for 用于渲染列表 -->
+      <ul>
+          <li v-for="(item,index) in  list">
+              {{ item.name }} {{ item.age }} {{ index  }}
+          </li>
+      </ul>
+      <!--  -->
+      <ul>
+          <!--  val就代表循环的属性值 name 代表循环的属性名称 index循环的下标-->
+            <li v-for="(val, name, index) in obj">
+                {{ val }} {{ name }} {{ index }}
+            </li>
+        </ul>
+        <h2>渲染数字</h2>
+        <ul>
+        <!--  val就代表循环的属性值 name 代表循环的属性名称 index循环的下标-->
+        <!-- num [1,2,3,4] -->
+            <li v-for="(item , index) in num">
+                {{ item }} {{ index }}
+            </li>
+        </ul>
+        <h2>渲染字符串</h2>
+        <ul>
+            <li v-for="(item,index) in str">
+                {{ item }} {{ index }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",  //  el代表控制元素的区域   
+            data () {  // data 数据仓库  
+                return {
+                    num:4,
+                    str:"bufan",
+                    list:[
+                        {
+                            name:"张三",
+                            age:40
+                        },
+                        {
+                            name:"李四",
+                            age:50
+                        },
+                        {
+                            name:"王五",
+                            age:60
+                        }
+                    ],
+                    obj:{
+                        name:"不凡",
+                        address:"郑州"
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

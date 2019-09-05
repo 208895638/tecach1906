@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .isSHow{
+            display: none;
+        }
+    </style>
+</head>
+<script src="./lib/vue.js"></script>
+<body>
+    <div id="app">
+        <!-- v-show用于控制元素的显示和隐藏 根据v-show对应的值来进行控制 为true就代表显示 为false就代表隐藏 -->
+        <!-- v-show特点 通过内联样式display来进行控制 v-show为true的清空 vue不会对v-show进行处理 -->
+        <div class="isSHow" v-show="bol">
+            {{ name }}
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",  //  el代表控制元素的区域   
+            data () {  // data 数据仓库  
+                return {
+                    name : "张三",
+                    names:"<span>李四</span>",
+                    age:40,
+                    num1 : 1,
+                    num2 : 2,
+                    bol:true
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var age = function(){
+
+        // }
+        // 1.第一种写法 不带参数的写法
+        // var age = () => {
+        //         return
+        // };
+
+        // var age = function(){
+        //     return
+        // }
+        // 2. 带一个参数的写法 
+        // var age = a => {
+        //     console.log(a);
+        // };
+
+        // var age = function(a){
+        //     console.log(a)
+        // }
+        // 3 . 带多个参数的写法 
+        // var age = (a , b) => {
+        //     console.log(a + b);  // 30
+        // };
+        // var age = function(a , b){
+        //     console.log(a + b); 
+        // }
+        // age(10 , 20)
+        // 4. 
+        // var age = a => a;
+        // var age = function(a){
+        //     return a
+        // }
+        //console.log(age(10))
+        /////////////   箭头函数与普通函数的区别  this指向问题  箭头函数指向是 父级  可以用箭头函数更改settimeot this的指向 
+        // var obj = {
+        //     name : '张三',
+        //     func : function(){
+        //         console.log(this.name , this); // 张三 obj
+        //     }
+        // };
+        var obj = {
+            name : '张三',
+            func : function() {
+                //console.log(this) // obj
+                setTimeout(()=>{
+                    console.log(this.name , this); 
+                })
+            }
+        };
+        obj.func();
+    </script>
+</body>
+</html>

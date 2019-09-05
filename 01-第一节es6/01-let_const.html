@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log(num)
+        // var num = 10;
+        //let const 
+
+        // console.log(num) // let 定义的变量 不存在变量提升
+        // let num = 10;
+        // num = 20;
+        //console.log(num)
+        // const  age = 10;
+        // age = 20; // const 定义的是一个不可被修改的变量
+        // console.log(age)
+        /////////////////////////////   块级作用域
+        // {
+        //     let names = "张三";
+        //     const age = 10;
+        //     console.log(names,age) // "张三" 10
+        // }
+        // console.log(age) // 报错
+        // console.log(names) // 报错
+        ////////////////////////////////  if for
+        // var i = 10;
+        // if( i = 10) {
+        //     let names = "李四";  // let 或const 定义的变量不是挂载到window上面
+        //     console.log(window)  //  李四
+        // }
+        //
+        //console.log(window)
+        //console.log(names) // 报错
+        ///////////////////////////////  let const 不可重复定义变量
+        // let names = "张三";
+
+        // let names = "李四";
+        // const age = 10;
+        // const age = 20;
+        // console.log(age);
+        // ///////////////////////////  let const 作用域 
+        
+        // {
+        //     let age = 40 ;
+        //     {
+        //         //console.log(age)  //   报错  找不到定义的变量
+                
+        //         let age = 30;  // 
+
+        //         console.log(age)  // 30  
+        //     }
+        // }
+        //////////////////////////// 
+        // const person = {
+        //     name :"张三"
+        // };
+        // person = 40;
+        // ///  const 定义的 人 可以对这个人里面的属性进行更改age name  不可以对人进行更改  
+        // console.log(person);  // 李四 
+        // var arr = [1 , 2, ,3 ,4];
+                
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .isSHow{
+            display: none;
+        }
+    </style>
+</head>
+<script src="./lib/vue.js"></script>
+<body>
+    <div id="app">
+        <!-- v-else v-if v-else-if 作用都是一样的 控制元素的显示和隐藏 -->
+        <!-- v-else v-else-if  必须和v-if成对出现 v-else v-else-if 和v-if对应的标签必须是同级的 -->
+        <!-- <div class="isSHow" v-if="bol">
+            {{ name }}
+        </div> -->
+        <div v-if="bol">
+            {{ name }}
+        </div>
+        <!-- age>40 值为false -->
+        <p v-else-if="age>40">
+               v-else-if: {{ age }}
+        </p>
+        <div v-else="!bol">
+            {{ age }}
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",  //  el代表控制元素的区域   
+            data () {  // data 数据仓库  
+                return {
+                    name : "张三",
+                    names:"<span>李四</span>",
+                    age:40,
+                    num1 : 1,
+                    num2 : 2,
+                    bol:false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

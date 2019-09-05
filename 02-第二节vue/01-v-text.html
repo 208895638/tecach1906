@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="./lib/vue.js"></script>
+<body>
+    <div id="app">
+        <!-- 02 v-text 用于把数据渲染到页面里面 v-text {{  }} 用于渲染文本 不能在同一个标签里面写多个相同的 指令 -->
+        <!-- v-text在一个标签里面只能渲染一次 {{}}可以写多次 -->
+        <div v-text="name">
+
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",  //  el代表控制元素的区域   
+            data () {  // data 数据仓库  
+                return {
+                    name : "张三",
+                    age:40,
+                    num1 : 1,
+                    num2 : 2
+                }
+            }
+        })
+    </script>
+</body>
+</html>

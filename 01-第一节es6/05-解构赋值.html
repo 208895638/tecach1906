@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr = [ 0 , 1 ,2, 3,4];
+        // ///var b = arr[1];
+        // // es6 数组解构 
+        // var [a , b , c ,  , e , f] = arr;  // 0 1 2  数组解构对应关系 与下标有关  对应不了  值为undefined
+
+        // console.log(f)  //   4
+        // var arr = [ 0 , 1, 2 , [ 3 , 4 ,[ 5 ] ] ];
+        // var b = arr[3][2][0];
+
+        // //console.log(b);
+        // var  [ , , , [ , , [ d ]]] = arr ; 
+        // console.log(d);
+        ////////////////////////////  对象的解构 解构定义的变量与属性名称有关 与下标没有关系
+        // var obj = {
+        //     name : "张三",
+        //     fun:function(){
+        //         console.log(this.name);
+        //         return this.name
+        //     }
+        // };
+        // // obj.name
+        // var { names , fun }  = obj;
+        // console.log(names , fun())
+        function ajax(method, url, data) {
+            var request = new XMLHttpRequest();
+                // 当服务器响应已做好被处理的准备时所执行的任务
+            request.onreadystatechange = function () {
+                    // 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+                    // 0: 请求未初始化
+                    // 1: 服务器连接已建立
+                    // 2: 请求已接收
+                    // 3: 请求处理中
+                    // 4: 请求已完成，且响应已就绪
+                if (request.readyState === 4) {
+                    // 返回服务器状态码
+                    if (request.status === 200) {
+                        var val = JSON.parse(request.responseText);
+                        var { data } = val;
+                        console.log(val , data);
+                        
+                    } else {
+                        //request.status;
+                    }
+                }
+            };
+            request.open(method, url);
+            request.send(data);
+        }
+        ajax('GET', 'http://59.110.138.169/api/douban/movie/in_theaters')
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        // var arr = [ 0 , 1, 2,4,5];
+        // 对数组进行求和 reduce reduce返回一个新值 新值就是计算过的结果
+        // var total = arr.reduce(function(total , current){ // total 求和的结果 current 当前循环的数据
+        //     return total + current
+        // },0);
+        var arr = [
+            {
+                age : 40
+            },
+            {
+                age : 50
+            },
+            {
+                age : 60
+            },
+        ]
+        // 把数组里面的年龄进行相加
+        // 对total赋予一个初值 current从第一项开始
+        var total = arr.reduce(function(total , current){ // total 求和的结果 current 当前循环的数据
+            return total + current.age
+        },0);
+        console.log(total)
+    </script>
+</body>
+</html>

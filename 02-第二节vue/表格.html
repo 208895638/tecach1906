@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table{
+            width: 100%;
+        }
+        th,td{
+            padding: 10px;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>json数据</p>
+        <ul>
+            <li v-for="item in list">
+                {{ item }}
+            </li>
+        </ul>
+        <p style="color: red">
+           ps 性别对应的数据 0 是男 1 是女  女对应的颜色为红色
+        </p>
+        <p>json数据对应的表格</p>
+        <table border="1" cellspacing="0" cellspadding="0">
+            <tr>
+                <th v-for="item in title"> {{ item }} </th>
+            </tr>
+            <tr v-for="item in list">
+                <td>{{item.name}}</td>
+                <td>
+                    <div v-show="item.sex == 1" :class="'red'">
+                        女
+                    </div>
+                    <div v-show="item.sex == 0">
+                        男
+                    </div>
+                </td>
+                <td>{{item.age}}</td>
+                <td>{{item.tel}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        // 要求  0 为男 1 为女 
+        var vm = new Vue({
+            el:"#app",
+            data () {
+                return {
+                    title:[
+                        "名称",
+                        "性别",
+                        "年龄",
+                        "电话号码"
+                    ],
+                    list:[
+                        { name : "张三" , sex : 0 , age : 30 , tel : 12312341234 },
+                        { name : "李四" , sex : 1 , age : 50 , tel : 12312341234 },
+                        { name : "王五" , sex : 0 , age : 40 , tel : 12312341234 },
+                        { name : "赵六" , sex : 1 , age : 50 , tel : 12312341234 }
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

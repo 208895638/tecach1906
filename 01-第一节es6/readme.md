@@ -1,10 +1,13 @@
 ## es6入门
+
 ### es6 简介
 
 ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。
 
 ### let和const 
+
 ES6 新增了`let/const`命令，用来声明变量。它的用法类似于`var`，但是所声明的变量，只在let命令所在的`代码块内`有效。代码块是在大括号 `{}` 中所写的语句,if语句和 for语句里面的{ }也属于块作用域。对于var, 在`function `内部， 加var的是局部变量， 不加var的则是 全局变量；
+
 + let声明变量及作用域
 let不存在变量提升
 ```html
@@ -26,6 +29,7 @@ let不存在变量提升
 </script>
 ```
 
+
 ```html
 <script>
   for (var i = 0; i < 10; i++) {
@@ -41,6 +45,7 @@ let不存在变量提升
 </script>
 ```
 + let/const
+
 let/const声明的变量不能重新被定义 let 可以重新赋值  const不可以赋值 
 
 ``` html
@@ -78,7 +83,7 @@ var f = function (v) {
 1. 不带参数的写法
 ```html
 <script>
-  var f = () =>  a 
+  var f = (a) =>  a 
 </script>
 ```
 2. 带一个参数的写法
@@ -135,13 +140,15 @@ function log(x ,y="world"){
 log('hello');//hello  world
 </script>
 ```
+
 ### 字符串模板 
+
 字符串拼接是开发时一个必不可少的环节，也是很恶心的一个环节，尤其是又臭又长的html字符串拼接。
 
 为什么说html字符串拼接很恶心呢，主要有以下几点：
 
 1. 传统的字符串拼接不能正常换行
-2. 传统的字符串拼接不能友好的插入变量
+2. 传统的字符串拼接不能友好的插入变量 ${}
 3. 传统的字符串拼接不能友好的处理单引号、双引号互相嵌套的问题。
 es6的模板字符串解决了以上问题
 
@@ -174,7 +181,7 @@ es6的模板字符串解决了以上问题
 ```
 
 ### 变量解构赋值
-
+可以理解为变量的取出
 + 数组的解构赋值
 
 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构
@@ -228,7 +235,7 @@ baz // undefined
 ### 数组的扩展
 
 + 扩展运算符
-扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。
+扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为`用逗号分隔的参数序列`。
 ```html
 <script>
 console.log(...[1, 2, 3])
@@ -243,7 +250,9 @@ var newArr = [...arr,...arrs];
 console.log(newArr) // [1,2,3,4]
 </script>
 ```
+
 + Array.from
+
 Array.from方法用于将`类对象`转为真正的数组(类数组对象比如arguments)
 类数组对象特点 表现像数组 却没有数组该有的方法 比如push
 ```html
@@ -288,6 +297,7 @@ Array.from方法用于将`类对象`转为真正的数组(类数组对象比如a
   ```
 
 ### Set 和 Map 数据结构
+
 + Set
 ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
 Set 本身是一个构造函数，用来生成 Set 数据结构。
@@ -303,12 +313,12 @@ console.log(s)
 上面代码通过add方法向 Set 结构加入成员，结果表明 Set 结构不会添加重复的值。
   
   - size属性
-  `Set.prototype.size`：返回Set实例的成员总数。
+  `Set.prototype.size`：返回Set实例的成员总数。array.length
   - size 方法
   `Set.prototype.add(value)`：添加某个值，返回 Set 结构本身。
   `Set.prototype.delete(value)`：删除某个值，返回一个布尔值，表示删除是否成功。 // 删除成功 返回true 否则 false
   `Set.prototype.has(value)`：返回一个布尔值，表示该值是否为Set的成员。
-  `Set.prototype.clear()`：清除
+  `Set.prototype.clear()`：清除 清空set数据结构
 
 ```html
 <script>
@@ -332,6 +342,7 @@ const array = Array.from(items);
 ``` 
 
 + Map
+
 ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map 结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。
 
 ```html
@@ -466,10 +477,15 @@ Promise最大的好处是在异步执行的流程中，把执行代码和处理�
    
 </script>
 ```
-
+```html
+<script>
+    
+   
+</script>
+```
 ### 常用的数组的操作 map、filter、foreach、some、every、includs、find、findIndex 、reduce
 
-+ map() JavaScript 数组map()方法主要创建一个新的数组使用调用此数组中的每个元素上所提供的函数的结果。即对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组。
++ map() JavaScript 数组map()方法主要创建一个新的数组使用调用此数组中的每个元素上所提供的函数的结果。即对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组。对数据进行操作 返回新的数据
 ```html
 <script>
 var list = [1,2,3,4];
@@ -565,6 +581,7 @@ console.log(item , index)
 ```
 + reduce 
 reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+常用用途用作求和
   - total不带初始值的写法
 ```html
 <script>

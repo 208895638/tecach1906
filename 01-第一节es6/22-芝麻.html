@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [];//1 2 4 8 16
+        //1  2  4  8 16 32
+        //arr.length = 64;
+        for(var i = 0; i< 64 ; i++){ // 0 1 2 3 4
+            if(i == 0){
+                arr.push(1);
+            }else{
+                arr.push(arr[i-1]*2)
+            }
+            
+        };
+       
+        var tot = arr.reduce(function(total , current){
+            return total + current
+        });
+        
+        var weight = tot * 0.00001;
+        console.log(arr , tot , weight);
+    </script>
+</body>
+</html>

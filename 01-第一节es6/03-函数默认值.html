@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var fun = function(a , b){
+        //     var b = b || 20; 
+        //     console.log(a + b); // 
+        // };
+        // fun(10 );
+        // var fun = function(a , b = 20){
+            
+        //     console.log(a + b); // 30
+        // };
+        // fun(10 );
+        var fun = function(a , b = 20){  // 在括号里面进行参数赋值 权重最低
+            
+            console.log(a + b); // 20
+        };
+        fun(10 , 10);
+    </script>
+</body>
+</html>

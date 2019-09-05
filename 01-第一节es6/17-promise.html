@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list">
+                {{ item.title }}
+
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data(){
+                return {
+                    list:[]
+                }
+            },
+            created () {
+                
+            }
+        })
+        // var pro = new Promise(function(resolve , reject){ // resolve 处理异步成功的方法 reject处理异步失败的方法
+        //     setTimeout(function(){ // 默认认为settime是向服务器请求数据
+        //         var num = Math.random()*10;
+        //         if(num>5){ // num 大于5 默认代表向服务器请求数据成功
+        //             resolve(num);
+        //         }else{ // 向服务器请求数据失败
+        //             reject(num);
+        //         }
+        //     },1000)
+        // });
+        // // then catch 是promise内置的方法 通过then catch可以获取resolve reject返回的数据
+        // // then处理成功的请求resolve 
+        // // catch 处理失败的请求catch
+        // pro
+        // .then(res =>{
+        //     console.log("成功",res)
+        // })
+        // .catch(res =>{
+        //     console.error("失败",res)
+        // })
+        function ajax(method, url, data) {
+            var request = new XMLHttpRequest();
+            
+            return new Promise(function (resolve, reject) {
+                // 当服务器响应已做好被处理的准备时所执行的任务
+                request.onreadystatechange = function () {
+                        // 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+                        // 0: 请求未初始化
+                        // 1: 服务器连接已建立
+                        // 2: 请求已接收
+                        // 3: 请求处理中
+                        // 4: 请求已完成，且响应已就绪
+                    if (request.readyState === 4) {
+                        // 返回服务器状态码
+                        if (request.status === 200) {
+
+                            resolve(request.responseText);
+                        } else {
+                            reject(request.status);
+                        }
+                    }
+                };
+                request.open(method, url);
+                request.send(data);
+            });
+        }
+        var p = ajax('GET', 'http://59.110.138.169/api/douban/movie/in_theaters');
+        p.then(res =>{
+            vm.list = JSON.parse(res).data
+            console.log(JSON.parse(res))
+        });
+    </script>
+</body>
+</html>

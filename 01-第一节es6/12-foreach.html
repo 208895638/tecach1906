@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // froeach 对数据进行循环 相当于for循环
+        // foreach 没有返回值
+        // foreach不能对元素进行修改
+        // break  不能提前终止循环
+
+        // var arr = [ 0 , 1, 2,3,5];
+        // var newArr = arr.forEach(ele => {
+        //     if(ele>2){
+        //         break;
+        //     }
+        //    return  ele*2
+        // });
+        //console.log(newArr , arr)
+        var arr = [
+            {
+                name:"张三"
+            },
+            {
+                name:"李四"
+            },
+            {
+                name:"王五"
+            },
+        ];
+         // 碰到李四 把李四这个值变为赵六 
+         arr.forEach(ele => {
+             if(ele.name == "李四"){
+                ele.name = "赵六"
+             }
+         })
+         console.log(arr)
+    </script>
+</body>
+</html>

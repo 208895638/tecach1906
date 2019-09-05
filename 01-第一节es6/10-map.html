@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var arr = [0 , 1 , 2 , 3 , 4]; // [0,2,4,6,8]
+        var newMap = arr.map(function(ele){  //  map 特点  不改变原数据 返回新数据 
+            return ele*2
+        });
+        // var newMap = arr.map(ele => ele*3);
+        console.log(newMap , arr)
+    </script>
+</body>
+</html>
