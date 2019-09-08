@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+       body,html{
+           height: 100%;
+       }
+       .mask{
+           position: fixed;
+           left: 0;
+           top:0;
+           height: 100%;
+           width: 100%;
+           background: rgba(0,0,0,0.6);
+
+       }
+       .main{
+           width: 200px;
+           height: 200px;
+           background: red;
+       }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <!-- 事件修饰符可以串联 -->
+       <div class="mask" v-if="isMaskShow" @click="isMaskShow = false">
+           <!-- 既阻止事件冒泡也阻止默认事件 -->
+            <div class="main" @click="">
+                <a href="http://www.baidu.com" @click.stop.prevent.once="">百度</a>
+            </div>
+       </div>
+       <button @click="isMaskShow = !isMaskShow">
+           按钮
+       </button>
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            isMaskShow:false
+          };
+        },
+        methods: { // 专门用于处理事件
+          
+        }
+      });
+    </script>
+  </body>
+</html>

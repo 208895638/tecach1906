@@ -7,20 +7,15 @@
     <title>Document</title>
     <script src="./lib/vue.js"></script>
     <style>
-      .red{
-          color: red;
-      }
-      .green{
-          color: green;
-      }
+      
     </style>
   </head>
   <body>
     <div id="app">
-       <input type="text" v-show="isShow" id="ipt">
-       <button @click="upt">
-           按钮
-       </button>
+      姓<input type="text" v-model="xi" @keyup="add">+
+      名<input type="text" v-model="name" @keyup="add">=
+      完整姓名<input type="text" v-model="total">
+      {{ total }}{{ total }}
     </div>
     <script>
         
@@ -28,16 +23,15 @@
         el: "#app",
         data() {
           return {
-            isShow:false
+            xi:"",
+            name:"",
+            total:""
           };
         },
         methods: { // 专门用于处理事件
-            upt(){
-                this.isShow = !this.isShow;
-                setTimeout(()=>{
-                     document.getElementById("ipt").focus();
-                })
-               
+            add(){
+                console.log("函数")
+                this.total = this.xi + this.name;
             }
         }
       });

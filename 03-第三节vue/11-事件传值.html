@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+      .red{
+          color: red;
+      }
+      .green{
+          color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <ul>
+            <!-- $event -->
+            <li v-for="item in list" :key="item.id" @click="del(item.id,$event)">
+                {{ item.area }} <input  type="text" v-if="item.isInputShow">
+            </li>
+        </ul>
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            list:[
+                {
+                    area:"河南",
+                    id:1001,
+                    isInputShow:false
+                },
+                {
+                    area:"北京",
+                    id:1002,
+                    isInputShow:false
+                },
+                {
+                    area:"上海",
+                    id:1003,
+                    isInputShow:false
+                },
+            ]
+          };
+        },
+        methods: { // 专门用于处理事件
+            del(val,e){
+                console.log(val,e);
+                var ele = this.list.find(ele => ele.id == val );
+                ele.isInputShow = true;
+                setTimeout(()=>{
+                    console.log(e.target.childNodes);
+                    var arr = Array.from(e.target.childNodes);
+                    var eles = arr.find(ele => ele.nodeType == 1);
+                    eles.focus();
+                })
+                
+                // var index = this.list.findIndex(ele => ele.id == val );
+                // this.list.splice(index,1);
+            }
+        }
+      });
+    </script>
+  </body>
+</html>

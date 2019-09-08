@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>需求:在输入框输入数据 可以对下面的列表进行匹配</h2>
+      <h2>遇到的问题：匹配到新数据 原数据不能改变</h2>
+      <h2>遇到这种问题或需求的时候 毫无疑问的首先使用计算属性</h2>
+        <input type="text" v-model="search">
+        <ul>
+          <li v-for="(item , index) in lists" :key="index">{{item}}</li>
+        </ul>
+        {{ lists }}
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            search:"",
+            list:[
+              "北京",
+              "上海",
+              "武汉",
+              "深圳",
+            ]
+          };
+        },
+        
+        computed: { /// 新建一个computed就代表这个里面的方法就叫做计算属性  // 
+          // 计算属性不改变data中的数据
+          // 计算属性会返回一个新值
+          lists(){
+            if(this.search == ""){
+              return this.list;
+            }else{
+              var item = this.list.filter(ele => ele == this.search);
+              console.log(item)
+              return item
+            }
+            
+          }
+        },
+        methods: { // 专门用于处理事件
+           
+        }
+      });
+    </script>
+  </body>
+</html>

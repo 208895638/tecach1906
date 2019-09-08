@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      翻转过的数据:{{ reverse }}
+      <input type="text" v-model="ipt">
+      <hr>
+      姓<input type="text" v-model="xi" >+
+      名<input type="text" v-model="name" >=
+      完整姓名<input type="text" :value="total">
+      {{ total }}{{ total }}{{ total }}
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            xi:"",
+            name:"",
+            ipt:""
+          };
+        },
+        //  计算属性和侦听器的不同
+        // 1. 侦听器不需要return一个新值 
+        // 2. 计算属性可以监听多个数据的变化 而侦听器watch只能监听一个数据的变化
+        // 3. 计算属性会缓存计算过的值
+        computed: { /// 新建一个computed就代表这个里面的方法就叫做计算属性
+          reverse(){
+            return this.ipt.split("").reverse().join("");
+          },
+          total(){ // total是一个函数 这个函数里面存储了所需要的值 
+            console.log("计算属性");
+            return this.xi + this.name;
+          }
+        },
+        methods: { // 专门用于处理事件
+           
+        }
+      });
+    </script>
+  </body>
+</html>

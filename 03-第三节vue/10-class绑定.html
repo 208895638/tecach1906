@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+      .red{
+          color: red;
+      }
+      .green{
+          color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <!-- 点击按钮可以控制div文字颜色的变化 -->
+        <!-- 控制class名称变化的第一种方式 三元表达式 -->
+        <!-- 2.对象的方式控制class名称的绑定 对象的方式可以添加多个类名  -->
+        <!-- 3.数组的方式控制class名称的绑定 -->
+        <div :class="currentClass ? 'red' : 'green'">
+            文字
+        </div>
+
+        <h2>对象的方式</h2>
+        <div :class="{red : currentClass , green : !currentClass }">
+                文字
+            </div>
+        <div :class="[{red : currentClass , green : !currentClass }]">
+                文字1
+            </div>
+        <button @click="currentClass = !currentClass">按钮</button>
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            currentClass:false, // currentClass为false 文字显示绿色  为true 文字显示红色
+          };
+        },
+        methods: { // 专门用于处理事件
+            
+        }
+      });
+    </script>
+  </body>
+</html>

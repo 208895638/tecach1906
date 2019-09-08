@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+       <!-- v-on 是vue提供的用于处理事件的指令(click dblclick 鼠标事件 键盘事件keyup) -->
+       <div id="box">
+           {{ text }}
+       </div>
+       <button v-on:click="updatas">
+           修改
+       </button>
+       <!-- dblclick双击事件 -->
+       <div v-on:dblclick="updatas1">
+           修改
+       </div>
+       <!-- 鼠标事件  mouseover mouseleave mouseenter mouseout -->
+       <div v-on:mouseover="updatas2">
+            鼠标放上去的时候修改文字
+       </div>
+       <hr>
+       <h2>键盘事件</h2>
+       <!-- 在这个页面有一个列表  敲回车的时候把input里面的数据放到列表里面 -->
+       <ul>
+           <li v-for="item in list">{{item}}</li>
+       </ul>
+       <!-- 按键事件 keyup  -->
+       <!-- 按键事件修饰符  -->
+       <!-- enter 代表敲击回车 -->
+       <!-- up代表键盘里面的上下左右 的上  -->
+       <!-- 键盘上下左右  up down let right -->
+       <input type="text" v-model="ipt"  v-on:keyup.enter="add">
+       <input type="text" v-model="ipt"  v-on:keyup.up="add">
+       <h2>事件可以简写 用@符号代替 v-on: 替换成@</h2>
+       <!-- 需求 敲回车的时候把输入框里面的内容添加到下面的列表里面 -->
+       <input type="text" v-model="val"  v-on:keyup.enter="adds">
+       <ul>
+           <!-- key值帮助vue区分循环的元素 -->
+           <li v-for="item in lists" :key="item.id">
+               <input type="checkbox" name="" id=""> {{item.area}}
+           </li>
+       </ul>
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            val:"",
+            ipt:"",
+            text:"不凡学院",
+            list:[
+                "郑州",
+                "北京",
+                "上海",
+                "杭州",
+                "河南"
+            ],
+            lists:[
+                {
+                    isChecked:false,
+                    area:"河南",
+                    id:1
+                },
+                {
+                    isChecked:false,
+                    area:"郑州",
+                    id:2
+                },
+                {
+                    isChecked:false,
+                    area:"北京",
+                    id:3
+                }
+            ]
+          };
+        },
+        methods: { // 专门用于处理事件
+            // updatas:function(){
+
+            // },
+            adds(){
+                
+                var obj = {
+                    isChecked:false,
+                    area:this.val
+                };
+                this.lists.unshift(obj);
+                this.val = ""
+            },
+            add(){
+                //this.ipt;
+                this.list.push(this.ipt);
+            },
+            updatas(){
+                // vm.text="bufanxueyuan1"
+                // 在vue中提供了另外一种方法用于获取data或者methods里面的属性或者方法 this
+                console.log(this)
+                this.text = "bufanxueyuan2"
+            },
+            updatas1(){
+                this.text = "bufan"
+            },
+            updatas2(){
+                this.text = "bufanxueyuan3"
+            }
+        }
+      });
+    </script>
+  </body>
+</html>

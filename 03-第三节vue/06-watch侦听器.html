@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      姓<input type="text" v-model="xi" >+
+      名<input type="text" v-model="name" >=
+      完整姓名<input type="text" v-model="total">
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            xi:"",
+            name:"",
+            total:""
+          };
+        },
+        // 侦听器watch是vue提供的用于监听数据变化的方法
+        watch:{
+            // 监听data里面的xi数据发生变化之后执行某些操作
+            xi(newVal , oldVal){ // 新值  老值
+                console.log("newVal ",newVal);
+                console.log("oldVal ",oldVal);
+                this.total = newVal + this.name;
+            },
+            name(newVal , oldVal){
+                this.total =this.xi + newVal  ;
+            }
+        },
+        methods: { // 专门用于处理事件
+           
+        }
+      });
+    </script>
+  </body>
+</html>

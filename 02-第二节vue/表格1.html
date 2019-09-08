@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        table{
+            width: 100%;
+        }
+        th,td{
+            padding: 10px;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <table border="1" cellspacing="0" cellspadding="0">
+        <tr>
+          <th>名称</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <th>电话号码</th>
+        </tr>
+        <tr v-for="item in list">
+          <td>{{ item.name }}</td>
+          <td>
+              <span v-if="!item.sex">
+                  男
+              </span>
+              <span v-else class="red">
+                  女
+              </span>
+            <!-- {{ item.sex }} -->
+            </td>
+          <td>{{ item.age }}</td>
+          <td>{{ item.tel }}</td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            list: [
+              { name: "张三", sex: 0, age: 30, tel: 12312341234 },
+              { name: "李四", sex: 1, age: 50, tel: 12312341234 },
+              { name: "王五", sex: 0, age: 40, tel: 12312341234 },
+              { name: "赵六", sex: 1, age: 50, tel: 12312341234 }
+            ]
+          };
+        }
+      });
+    </script>
+  </body>
+</html>
