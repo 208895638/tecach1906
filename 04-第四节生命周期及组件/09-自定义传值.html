@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+     
+    <div id="app">
+       <!-- 自定义事件传值 -->
+       <!-- 自定义事件对属性的修改实际还是在在组件的外面对这个属性进行修改 -->
+        <com1 :num = "num" @toparent="uptNum"></com1>
+    </div>
+    
+    <template id="imgs">
+        <div>
+            {{ num }}
+            <button @click="upt">更改</button>
+        </div>
+    </template>
+    <script>
+      var vm = new Vue(
+        {
+            el: "#app", 
+            data() {
+                return {
+                    msg:"不凡学院",
+                    imgSrc:true,
+                    num:10
+                };
+            },
+            methods: {
+                uptNum(val){ // val 对应的是子组件传递过来的参数
+                    console.log(val);
+                    this.num = val;
+                }
+            },
+            components: {
+                "com1" :{
+                    props:["imgsrc","num"],
+                    template:"#imgs",
+                    data () {
+                        return {
+                            nums:this.num
+                        }
+                    },
+                    methods: {
+                        upt(){
+                            // $emit 向父元素进行传值
+                           
+                            this.$emit("toparent" , this.nums++)
+                        }
+                    },
+                    
+                }
+            }
+        }
+      );
+    
+    </script>
+  </body>
+</html>

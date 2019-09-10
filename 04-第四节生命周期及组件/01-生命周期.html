@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <script src="./lib/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
+  </head>
+  <body>
+      <!-- 生命周期 简单来说就是控制vue实例从创建 运行 销毁这几个阶段的函数 -->
+      <!-- 8个生命周期钩子 -->
+      <!-- vue实例创建阶段执行的钩子函数 1-4 主要用作获取数据 ajax从后台调取数据 最常用的就两个 created mounted  -->
+      <!-- 1. beforeCreate：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 methods 属性 -->
+      <!-- 2. created：实例已经在内存中创建OK -->
+      <!-- 3. beforeMount：此时已经完成了模板的编译，但是还没有挂载到页面中 -->
+      <!-- 4. mounted：此时，已经将编译好的模板，挂载到了页面指定的容器中显示 -->
+      <!-- mounted , created 区别 这俩都可以用来获取数据 但区别是 如果用插件执行dom操作的时候只能写在mounted里面 比如swiper插件 只能写在mounted里面 -->
+      <!-- 5-6 运行阶段的钩子函数 当更改数据的是可以监听到的钩子函数 -->
+      <!-- 5. beforeUpdate：状态更新之前执行此函数，data里面的数据已经更改 但是还没有渲染到页面里面 -->
+      <!-- 6. updated：实例更新完毕之后调用此函数，此时数据和页面展示的都是最新的 -->
+      <!-- 7-8 销毁阶段的钩子函数 -->
+      <!-- 7. beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用。 -->
+      <!-- 8. destroyed：Vue -->
+    <div id="app">
+       {{ msg }}
+       <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">slider1</div>
+            <div class="swiper-slide">slider2</div>
+            <div class="swiper-slide">slider3</div>
+        </div>
+        </div>
+        <button @click="updates">
+            改变msg
+        </button>
+    </div>
+    <script>
+        
+      var vm = new Vue({
+        el: "#app", // vm.$mount 相当于el
+        data() {
+          return {
+            msg:"不凡学院"
+          };
+        },
+        methods: { // 专门用于处理事件
+            updates(){
+                this.msg = 111;
+            }
+        },
+        beforeCreate(){ // 在这一步的时候 data和methods还没有初始化好 所以beforeCreate 没啥作用
+            console.log(this.msg);
+            console.log("beforeCreate")
+        },
+        created(){ // data和methods已经初始化完成  一般ajax获取数据操作写在created里面
+            this.msg = "bufanxueyuan"
+            console.log(this.msg);
+            console.log("created");
+            
+        },
+        beforeMount(){ // 数据更新完成 数据还没有渲染到页面里面 
+            console.log(this.msg);
+            console.log("beforeMount")
+        },
+        mounted(){ // 只有在mounted钩子函数里面 页面展示的数据才是最新的数据
+            console.log(this.msg);
+            console.log("mounted");
+            var mySwiper = new Swiper('.swiper-container', {
+                autoplay: 300,//可选选项，自动滑动
+            })
+        },
+        // beforeUpdate updated 对创建阶段的数据更改不起作用 只有对vue实例创建完成之后数据的更改才能检测到
+        beforeUpdate(){ // 数据是最新的 但是页面中的数据是旧的
+            console.log(this.msg);
+            console.log("beforeUpdate")
+        },
+        updated(){ // 页面中的数据是最新的
+            console.log(this.msg);
+            console.log("updated")
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+     
+    <div id="app">
+        <!-- 传递给组件的属性的特点 -->
+        <!-- 1. 不能直接修改传递过来的属性 -->
+        <!-- .sync  直接修改父元素里面的属性 -->
+        <com1 :num.sync = "num" ></com1>
+    </div>
+    
+    <template id="imgs">
+        <div>
+            {{ num }}
+            <button @click="upt">更改</button>
+        </div>
+    </template>
+    <script>
+      var vm = new Vue(
+        {
+            el: "#app", 
+            data() {
+                return {
+                    msg:"不凡学院",
+                    imgSrc:true,
+                    num:10
+                };
+            },
+            components: {
+                "com1" :{
+                    props:["num"],
+                    data () {
+                        return {
+                            nums:this.num
+                        }
+                    },
+                    template:"#imgs",
+                    methods: {
+                        upt(){
+                            this.$emit("update:num",this.nums++);
+                        }
+                    }
+                }
+            }
+        }
+      );
+    
+    </script>
+  </body>
+</html>
