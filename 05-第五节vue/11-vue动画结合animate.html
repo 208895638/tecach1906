@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <link rel="stylesheet" href="https://daneden.github.io/animate.css/animate.min.css">
+   
+  </head>
+  <body>
+     
+    <div id="app">
+        <!-- vue提供的动画 -->
+        <!-- mode 控制动画过渡的模式 先出还是先进 out-in in-out 常用的就是out-in -->
+        <!-- enter-active-class 进入执行的class名称 leave-active-class -->
+        <!-- 控制动画持续的事件 duration -->
+        <transition :duration="{ enter : 200 , leave : 1000}" mode="out-in" enter-active-class="bounceIn animated" leave-active-class="bounceOut animated">
+            <div v-if="isInputShow">
+                不凡学院
+            </div>
+            <input v-else type="text">
+        </transition>
+       <hr>
+      
+       <button @click="isInputShow = !isInputShow">
+            切换input框的显示和隐藏
+       </button>
+    </div>
+    <script>
+       
+        
+      var vm = new Vue({
+            el: "#app", 
+            data() {
+                return {
+                   isInputShow:true,
+                   isIptShow:true,
+                   msg:"不凡学院"
+                };
+            },
+            methods: {
+                
+            },
+            components: {
+                
+            }
+        });
+    
+    </script>
+  </body>
+</html>

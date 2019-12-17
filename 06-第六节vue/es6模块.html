@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- import 代表导入需要的文件 导入之前首先需要把这个文件暴露出去 暴露通过export进行暴露 -->
+    <!-- import 的变量不能直接对他进行修改 -->
+    <!-- 打开页面必须以本地服务器的方式打开 -->
+    <script type="module"> 
+        // import { age , fun} from "./es6.js";
+        
+        // age ++ ;
+        // var ages = age;
+        // ages ++ ;
+        // console.log(ages)
+
+        // 全部导入js文件所有暴露的变量
+        // * 代表导入js文件里面暴露的所有的变量  as代表给导入的变量起个名称
+        // import * as total from "./es6.js";
+        // console.log(total.age , total.fun())
+        // 引入exportdefault.js
+        //export default  导出的变量 导入的时候就不需要写{ } 导入的时候直接用一个变量 代表导出的所有的东西 相当于import * as total from "./es6.js";
+        import total from "./exportdefault.js";
+        console.log(total)
+    </script>
+</body>
+</html>

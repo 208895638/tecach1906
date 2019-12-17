@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+     
+    <div id="app">
+        <!-- 后备内容 当组件里面不写东西的时候默认展示的内容 当组件里面有内容的时候将会优先展示组件里面的内容 -->
+        <h2>这个一个标题</h2>
+        <com></com>
+        <com>组件里面的文字</com>
+    </div>
+    <script>
+       
+        
+      var vm = new Vue({
+            el: "#app", 
+            data() {
+                return {
+                   isInputShow:true
+                };
+            },
+            methods: {
+                
+            },
+            components: {
+                
+                com:{
+                    template:"<div><button @click='getParent'>点击获取父元素里面的属性或者方法</button><slot>默认展示的文字</slot></div>",
+                    data () {
+                        return {
+                            name:"不凡学院"
+                        }
+                    },
+                    methods: {
+                        getParent(){
+                           console.log(this.$root.isInputShow)
+                        },
+                        alerts(){
+                            alert(this.name)
+                        }
+                    },
+                    
+                }
+            }
+        });
+    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+        /* 进入过程动画控制 */
+        /* 进入的初始状态 */
+        /* v-enter 是tansition组件默认的class名称 使用v-enter之后所有元素的显示和隐藏都会使用v前缀提供的动画 */
+        .v-enter{ 
+            opacity:0;
+        }
+        /* 进入的结束状态 */
+        .v-enter-to{
+            opacity:1;
+        }
+        /* v-enter-active */
+        .v-enter-active{
+            transition: 1s ease;
+        }
+        /* 离开过程动画控制 */
+        .v-leave{ 
+            opacity:1;
+        }
+        .v-leave-to{
+            opacity:0;
+        }
+        .v-leave-active{
+            transition: 1s ease;
+        }
+
+
+
+
+        /* 从右往左进入 */
+        .selfleave-enter{ 
+            opacity:0;
+            transform: translateX(100%);
+        }
+        /* 进入的结束状态 */
+        .selfleave-enter-to{
+            opacity:1;
+            transform: translateX(0);
+        }
+        .selfleave-enter-active{
+            transition: 1s ease;
+        }
+        /* 离开过程动画控制 从左往右离开*/
+        .selfleave-leave{ 
+            opacity:1;
+            transform: translateX(0);
+        }
+        .selfleave-leave-to{
+            opacity:0;
+            transform: translateX(100%);
+        }
+        .selfleave-leave-active{
+            transition: 1s ease;
+        }
+    </style>
+  </head>
+  <body>
+     
+    <div id="app">
+        <!-- vue提供的动画 -->
+        <!-- mode 控制动画过渡的模式 先出还是先进 out-in in-out 常用的就是out-in -->
+        <transition mode="out-in">
+            <div v-if="isInputShow">
+                不凡学院
+            </div>
+            <input v-else type="text">
+        </transition>
+       
+       <hr>
+       <transition name="selfleave" mode="out-in">
+           <div v-if="isIptShow">
+                文字
+           </div>
+           <input type="text" v-else>
+       </transition>
+       <button @click="isIptShow = !isIptShow">
+            切换文字的显示和隐藏
+       </button>
+       <button @click="isInputShow = !isInputShow">
+            切换input框的显示和隐藏
+       </button>
+    </div>
+    <script>
+       
+        
+      var vm = new Vue({
+            el: "#app", 
+            data() {
+                return {
+                   isInputShow:true,
+                   isIptShow:true,
+                   msg:"不凡学院"
+                };
+            },
+            methods: {
+                
+            },
+            components: {
+                
+            }
+        });
+    
+    </script>
+  </body>
+</html>

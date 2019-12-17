@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    
+  </head>
+  <body>
+     
+    <div id="app">
+        {{ arae }}
+        <!-- 把公共的属性或者方法提取出来 当使用的时候可以使用mixins进行混入 混入之后当前的vue实例就具有了这个公共的属性或者方法 -->
+       <div @click="alerts">
+            提示
+       </div>
+    </div>
+    <script>
+       var obj = { // obj 是每个页面里面公共的属性或者方法
+           data () {
+               return {
+                   area:"郑州"
+               }
+           },
+           methods: {
+                alerts(){ // 公共的方法
+                   alert(123)
+                }
+           }
+       }
+        
+      var vm = new Vue({
+            el: "#app", 
+            mixins: [obj],
+            data() {
+                return {
+                   arae:"河南"
+                };
+            },
+            methods: {
+               
+            },
+            components: {
+            }
+        });
+    
+    </script>
+  </body>
+</html>

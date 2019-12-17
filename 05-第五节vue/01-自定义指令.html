@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+     
+    <div id="app">
+        <!--  可以通过自定义指令的方式来获取元素 -->
+        <!-- 需求 在input框插入到dom的时候 给input赋初值 -->
+      <input type="text" v-if="isInputShow" v-focus="1+1">
+      <button @click="isInputShow = !isInputShow">点击控制input框的显示和隐藏</button>
+    </div>
+    <script>
+        // 全局自定义指令
+        // 指令最主要的用途 获取dom元素 对dom元素执行某些操作
+        // 在指令中不能使用this
+        // Vue.directive("focus",{
+        //     // bind inserted执行顺序 首先执行bind 其次执行inserted
+        //     bind(el,binding){ // 当指令与标签绑定的时候执行的钩子函数 在这一步 标签还没有渲染到dom里面 现在所处的位置在内存中
+        //         // el 指令绑定的标签 
+        //         // binding需要注意的两个地方 value 获取的指令绑定的值 第二个expression  是指令获取的原始的表达式
+        //         console.log("bind",binding);
+        //         // 一般在bind钩子函数里面执行样式操作
+        //         //el.style.color=binding.value
+        //         //el.focus();
+        //     },
+        //     inserted(el,binding){ // 当指令绑定的标签插入到dom的时候执行的钩子函数
+        //         console.log("inserted",binding);
+        //         el.focus();
+        //     }
+        // });
+            // 当bind和inserted两个函数执行相同的操作的时候 可以省略这两个函数
+            Vue.directive("focus",function (el,binding){
+                //el.style.color="red";
+                console.log(this);
+                vm.$nextTick(()=>{
+                    el.focus();
+                })
+                // this.$nextTick(()=>{
+                //     el.focus();
+                // })
+                
+            })
+      var vm = new Vue({
+            el: "#app", 
+            data() {
+                return {
+                   isInputShow:false
+                };
+            },
+            directives: {
+                focuss:{
+                    
+                }
+            }
+        });
+    
+    </script>
+  </body>
+</html>

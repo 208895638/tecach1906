@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+     
+    <div id="app">
+        <!-- 插槽 主要作用是向组件里面插入内容 一般用作弹窗或者公共导航 -->
+        <h2>这个一个标题</h2>
+        <com>这是一个组件</com>
+    </div>
+    <script>
+       
+        
+      var vm = new Vue({
+            el: "#app", 
+            data() {
+                return {
+                   isInputShow:true
+                };
+            },
+            methods: {
+                
+            },
+            components: {
+                
+                com:{
+                    template:"<div><button @click='getParent'>点击获取父元素里面的属性或者方法</button><slot></slot></div>",
+                    data () {
+                        return {
+                            name:"不凡学院"
+                        }
+                    },
+                    methods: {
+                        getParent(){
+                           console.log(this.$root.isInputShow)
+                        },
+                        alerts(){
+                            alert(this.name)
+                        }
+                    },
+                    
+                }
+            }
+        });
+    
+    </script>
+  </body>
+</html>

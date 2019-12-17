@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+  </head>
+  <body>
+     
+    <div id="app">
+        <!-- $ref 获取子元素或者子组件里面的方法 -->
+        <input type="text" ref="ipt">
+        <button @click="aa">
+            input框聚焦
+        </button>
+        <button @click="getChildMessage">获取子组件里面的属性</button>
+        <!-- this.$refs.com1.name -->
+        <com ref="com1"></com>
+    </div>
+    <script>
+       
+        
+      var vm = new Vue({
+            el: "#app", 
+            data() {
+                return {
+                   isInputShow:true
+                };
+            },
+            methods: {
+                aa(){
+                    this.$refs.ipt.focus();
+                },
+                alerts(){
+                    alert(1)
+                },
+                getChildMessage(){
+                    // console.log(this.$refs.com1.name)
+                    console.log(this.$refs.com1.alerts())
+                }
+            },
+            components: {
+                
+                com:{
+                    template:"<div><button @click='getParent'>点击获取父元素里面的属性或者方法</button></div>",
+                    data () {
+                        return {
+                            name:"不凡学院"
+                        }
+                    },
+                    methods: {
+                        getParent(){
+                           console.log(this.$root.isInputShow)
+                        },
+                        alerts(){
+                            alert(this.name)
+                        }
+                    },
+                    
+                }
+            }
+        });
+    
+    </script>
+  </body>
+</html>

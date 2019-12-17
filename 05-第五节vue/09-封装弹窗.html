@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .mask{
+            width: 100%;
+            height:100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .boxs{
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 4px;
+        }
+    </style>
+  </head>
+  <body>
+     
+    <div id="app">
+        <box :title="'不凡学院'">
+            <template v-slot:top>
+                    bufanxueyuan
+            </template>
+            <template v-slot:main>
+                    不凡学院位郑州
+                    <input type="text">
+            </template>
+            <template v-slot:foot>
+                <button>取消</button>
+                <button>确定</button>
+            </template>
+        </box>
+    </div>
+    <template id="box">
+        <div class="mask">
+            <div class="boxs">
+                <div class="top">
+                    <!-- 作用存放弹窗的标题 -->
+                    <slot name="top"></slot>{{ title }}
+                </div>
+                <div class="main">
+                    <!-- 作用存放弹窗内容 -->
+                    <slot name="main"></slot>
+                </div>
+                <div class="foot">
+                    <!-- 作用 存放按钮 -->
+                    <slot name="foot"></slot>
+                </div>
+            </div>
+            
+        </div>
+    </template>
+    <script>
+       
+        
+      var vm = new Vue({
+            el: "#app", 
+            data() {
+                return {
+                   isInputShow:true,
+                   msg:"不凡学院"
+                };
+            },
+            methods: {
+                
+            },
+            components: {
+                box:{
+                    template:"#box",
+                    props:[
+                        "title"
+                    ]
+                }
+            }
+        });
+    
+    </script>
+  </body>
+</html>
