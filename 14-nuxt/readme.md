@@ -2,19 +2,22 @@
 ## seo
 汉译为搜索引擎优化。是一种方式：利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名。目的是让其在行业内占据领先地位，获得品牌收益。
 
-### nuxt 的由来
-由于vue脚手架生成的单页面项目不支持seo,再者一般公司的官网都需要seo来进行搜索排名，这个时候vue的服务端渲染nuxt就出现。Nuxt.js简单的说是Vue.js的通用框架，最常用的就是用来作SSR（服务器端渲染）。再直白点说，就是Vue.js原来是开发SPA（单页应用）的，但是随着技术的普及，很多人想用Vue开发多页应用，并在服务端完成渲染。这时候就出现了Nuxt.js这个框架，她简化了SSR的开发难度。还可以直接用命令把我们制作的vue项目生成为静态html。
+### nuxt服务端渲染与客户端渲染
 
-### 服务器端渲染到底有什么好处
-最主要的原因时SPA（单页应用）不利于搜索引擎的SEO操作。比如你作一个新闻网站，流量的一个主要来源是通过百度、谷歌、bing这些搜索引擎，但是它们对SPA的抓取并不好，特别是百度根本没法抓取到SPA的内容页面，所以我们必须把我们的应用在服务端渲染成适合搜索引擎抓取的页面，再下载到客户端。那Nuxt.js适合作新闻、博客、电影、咨询这样的需要搜索引擎提供流量的项目。如果你要作移动端的项目，就没必要使用这个框架了。
+传统的web开发，传统的web开发是，客户端向服务端发送请求，服务端查询数据库，拼接`HTML`字符串（模板），通过一系列的数据处理之后，把整理好的`HTML`返回给客户端,浏览器相当于打开了一个页面。这种比如我们经常听说过的`jsp`,`PHP`,`aspx`也就是传统的`MVC`的开发。
 
-### 什么是SSR？
-SSR，即服务器渲染，就是在服务器端将对Vue页面进行渲染生成html文件，将html页面传递给浏览器。  
+`SPA`应用，到了`Vue`、`React`，单页面应用优秀的用户体验，逐渐成为了主流，页面整体式`javaScript`渲染出来的，称之为客户端渲染`CSR`。`SPA`渲染过程。由客户端访问`URL`发送请求到服务端，返回`HTML`结构（但是`SPA`的返回的`HTML`结构是非常的小的，只有一个基本的结构，如第一段代码所示）。客户端接收到返回结果之后，在客户端开始渲染`HTML`，渲染时执行对应`javaScript`，最后渲染`template`，渲染完成之后，再次向服务端发送数据请求，注意这里时数据请求，服务端返回`json`格式数据。客户端接收数据，然后完成最终渲染。
 
+`SPA`虽然给服务器减轻了压力，但是也是有缺点的：
 
-SSR两个优点：  
-+ SEO 不同于SPA的HTML只有一个无实际内容的HTML和一个app.js，SSR生成的HTML是有内容的，这让搜索引擎能够索引到页面内容。
-+ 更快内容到达时间 传统的SPA应用是将bundle.js从服务器获取，然后在客户端解析并挂载到dom。而SSR直接将HTML字符串传递给浏览器。大大加快了首屏加载时间。
+1. 首屏渲染时间比较长：必须等待`JavaScript`加载完毕，并且执行完毕，才能渲染出首屏。
+2. `SEO`不友好：爬虫只能拿到一个`div`元素，认为页面是空的，不利于`SEO`。
+
+为了解决如上两个问题，出现了`SSR`解决方案，后端渲染出首屏的`DOM`结构返回，前端拿到内容带上首屏，后续的页面操作，再用单页面路由和渲染，称之为服务端渲染(`SSR`)。
+
+SSR`渲染流程是这样的，客户端发送`URL`请求到服务端，服务端读取对应的`url`的模板信息，在服务端做出`html`和`数据`的渲染，渲染完成之后返回`html`结构，客户端这时拿到的之后首屏页面的`html`结构。所以用户在浏览首屏的时候速度会很快，因为客户端不需要再次发送`ajax`请求。并不是做了`SSR`我们的页面就不属于`SPA`应用了，它仍然是一个独立的`spa`应用。
+
+`SSR`在渲染首屏的时候在服务端做出了渲染，注意仅仅是首屏，其他页面还是需要在客户端渲染的，在`服务端`接收到请求之后并且渲染出首屏页面，会携带着剩余的路由信息预留给`客户端`去渲染其他路由的页面。
 
 ### Nuxt.js是特点（优点）
 + 基于 Vue.js
@@ -47,7 +50,7 @@ Nuxt自动生产了项目目录
 |-- assets                           // 用于组织未编译的静态资源入LESS、SASS 或 JavaScript
 |-- components                       // 用于自己编写的Vue组件，比如滚动组件，日历组件，分页组件
 |-- layouts                          // 布局目录，用于组织应用的布局组件，不可更改。
-|-- middleware                       // 用于存放中间件
+|-- middleware                       // 用于存放中间件 一般用于鉴权
 |-- pages                            // 用于存放写的页面，我们主要的工作区域
 |-- plugins                          // 用于存放JavaScript插件的地方
 |-- static                           // 用于存放静态资源文件，比如图片
@@ -60,7 +63,12 @@ Nuxt自动生产了项目目录
 |-- package.json                     // npm包管理配置文件
 </script>
 ```
+### nuxt生命周期
+
+![nuxt生命周期](https://img-blog.csdnimg.cn/20190702173158457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlYmpoaA==,size_16,color_FFFFFF,t_70)
+
 ### 修改启动端口  
+
 找到package.json   
 在package.json里面加上
 <script>
@@ -135,7 +143,7 @@ css:['~assets/css/reset.css'],
         </ul>
     </div>
   </template>
-```  
+```
 在news文件夹下新建index.vue文件，并写入下面的代码：  
 
 ```html
@@ -147,7 +155,7 @@ css:['~assets/css/reset.css'],
         </ul>
     </div>
   </template>
-```  
+```
 修改原来的pages文件夹下的index.vue，删除没用的代码，写入下面链接代码：  
 ```html
 <template>
@@ -172,7 +180,7 @@ export default {
 <style>
  
 </style>
-```  
+```
 ### 跳转标签<nuxt-link> 
 使用nuxt提供的组件进行页面间的跳转 
 ```html
@@ -306,36 +314,11 @@ router: {
 </script>
 ```
 ### 登陆鉴权
-安装cookie插件(因为是服务端渲染 所以获取不到window,localstorage等) `npm install js-cookie --save`  
 
-1. 登陆的时候在本地设置token 
-<script>
-import Cookie from "js-cookie" 
-Cookie.set('token', 123)
-</script>
+登陆鉴权通过nuxt的中间件来实现
 
-2. 在middleware文件夹新建requireAuth.js 用于登陆权限判断
-<script>
-import cookie from 'js-cookie'
-export default function(val){
-    console.log(val);
-    var token, path;
-    if(process.client){ //如果当前环境处于客户端
-        token = cookie.get('token')
-        path = val.route.path;
-    }
-    console.log(token)
-}
-</script>
-4. 在nuxt.config.js文件中加上  
-<script>
-  router:{  // 路由配置
-    middleware:"requireAuth" // 当每次路由跳转时都使用requireAuth文件
-  }
-</script>
+在上面一张图可以看到，middleware是在页面渲染执行，也就是在页面渲染到浏览器之前进行的操作，一般通过 nuxt执行路由鉴权的操作.[nuxt服务端与客户端获取cookie](https://blog.csdn.net/umufeng/article/details/80524766)
 
-5. 这样就完成了登陆鉴权
-  
 ### Nuxt的路由动画效果 
 路由的动画效果，也叫作页面的更换效果。Nuxt.js提供两种方法为路由提供动画效果，一种是全局的，一种是针对单独页面制作。
 
@@ -349,11 +332,11 @@ export default function(val){
 .page-enter, .page-leave-active {
     opacity: 0;
 }
-```  
+```
 然后在nuxt.config.js里加入一个全局的css文件就可以了。   
 ```html
 css:['assets/css/main.css'],
-```   
+```
 这时候在页面切换的时候就会有2秒钟的动画切换效果了  
 + 单独设置页面动效
 想给一个页面单独设置特殊的效果时，我们只要在css里改变默认的page，然后在页面组件的配置中加入transition字段即可。例如，我们想给about页面加入一个字体放大然后缩小的效果，其他页面没有这个效果。  
@@ -368,13 +351,13 @@ css:['assets/css/main.css'],
     opacity: 0;
     font-size:40px;
 }
-```  
+```
 然后在about/index.vue组件中设置  
 ```html
 export default {
   transition:'test'
 }
-```  
+```
 这时候就有了页面的切换独特动效了。
 
 ### Nuxt的错误页面和个性meta设置 
@@ -396,7 +379,7 @@ export default {
   props:['error'],
 }
 </script>
-```    
+```
 代码用v-if进行判断错误类型，需要注意的是这个错误是你需要在`<script>`里进行声明的，如果不声明程序是找不到`error.statusCode`的。  
 ### 个性meta设置
 页面的Meta对于SEO的设置非常重要，比如你现在要作个新闻页面，那为了搜索引擎对新闻的收录，需要每个页面对新闻都有不同的title和meta设置。直接使用head方法来设置当前页面的头部信息就可以了。
@@ -428,7 +411,7 @@ export default {
 }
   
 </script>
-```  
+```
 注意：为了避免子组件中的meta标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为meta标签配一个唯一的标识编号。
 ### asyncData方法获取数据 
 asyncData方法会在组件（限于页面组件）每次加载之前被调用。它可以在服务端或路由更新之前被调用。 在这个方法被调用的时候，第一个参数被设定为当前页面的上下文对象，你可以利用 asyncData方法来获取数据，Nuxt.js 会将 asyncData 返回的数据融合组件 data 方法返回的数据一并返回给当前组件。  
@@ -476,10 +459,9 @@ Nuxt.js 可依据路由配置将应用静态化，使得我们可以将应用部
 
 
 
-  
 
 
 
 
 
-  
+
